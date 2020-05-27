@@ -3,7 +3,7 @@ module.exports = {
         const dbInstance = req.app.get('db');
         const { name, description, price, image_url} = req.body;
 
-        dbInstance.create_product([name, description, price, image_url])
+        dbInstance.create_products([name, description, price, image_url])
         .then( () => res.sendStatus(200))
         .catch( err => {
             res.status(500).send({errorMessage: "create_product did not work"});
@@ -22,7 +22,7 @@ module.exports = {
             console.log(err)
         });
     },
-    getAll: (req, res, next) => {
+    getAll: (req, res) => {
         const dbInstance = req.app.get('db');
 
         dbInstance.read_products()
@@ -32,7 +32,7 @@ module.exports = {
             console.log(err)
         })
     },
-    update: (req, res, next) => {
+    update: (req, res) => {
         const dbInstance = req.app.get('db');
         const { params, query } = req;
 
@@ -43,7 +43,7 @@ module.exports = {
             console.log(err)
         })
     },
-    delete: (req, res, next) => {
+    delete: (req, res) => {
         const dbInstance = req.app.get('db');
         const { id } = req.params;
 
